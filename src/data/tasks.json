@@ -1,0 +1,25 @@
+{
+  "variables": ["A", "B", "C"],
+  "modes": {
+    "eliminate": [
+      "(#1 ⇒ #2) ∨ #3",
+      "#1 ⇒ (#2 ∨ #3)",
+      "(#1 ⇔ #2) ∧ (#2 ⇒ #3)",
+      "(#1 ∧ #2) ⇒ (#2 ∨ #3)",
+      "(#1 ⇔ #2) ⇒ (#2 ⇔ #3)"
+    ],
+    "negation": [
+      "#1 ∧ (#2 ∨ #3)",
+      "(#1 ∨ #2) ∧ #3",
+      "(#1 ∧ #2) ∨ (#2 ∧ #3)",
+      "#1 ∨ (#2 ∧ #3)",
+      "(#1 ∨ #2) ∨ (#2 ∧ #3)"
+    ],
+    "equivalence": [
+      { "base": "#1 ∧ (#2 ∨ #3)", "hint": "Distributivgesetz: verteile ∧ über ∨" },
+      { "base": "¬(#1 ∧ #2)", "hint": "De Morgan anwenden" },
+      { "base": "#1 ⇒ #2", "hint": "Ersetze ⇒ durch ¬ links oder rechts" },
+      { "base": "(#1 ∨ #2) ⇒ #3", "hint": "Eliminiere ⇒ und vereinfache" }
+    ]
+  }
+}
