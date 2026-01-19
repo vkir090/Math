@@ -1,0 +1,84 @@
+{
+  "modes": {
+    "setIdentity": [
+      { "type": "symbolic_simplify", "promptText": "Vereinfache: A ∪ ∅", "solutionExpr": "A", "tags": ["neutral"], "explanation": "∅ fügt nichts hinzu.", "sets": 2 },
+      { "type": "symbolic_simplify", "promptText": "Vereinfache: A ∩ Ω", "solutionExpr": "A", "tags": ["neutral"], "explanation": "Ω enthält alles.", "sets": 2 },
+      { "type": "symbolic_simplify", "promptText": "Vereinfache: A ∩ ∅", "solutionExpr": "∅", "tags": ["dominanz"], "explanation": "Schnitt mit ∅ ist leer.", "sets": 2 },
+      { "type": "symbolic_simplify", "promptText": "Vereinfache: A ∪ Ω", "solutionExpr": "Ω", "tags": ["dominanz"], "explanation": "Ω dominiert die Vereinigung.", "sets": 2 },
+      { "type": "symbolic_simplify", "promptText": "Vereinfache: (A ∩ B)^c", "solutionExpr": "A^c ∪ B^c", "tags": ["de-morgan"], "explanation": "De Morgan: ¬(a∧b) ⇔ ¬a∨¬b.", "sets": 2 },
+      { "type": "symbolic_simplify", "promptText": "Vereinfache: (A ∪ B)^c", "solutionExpr": "A^c ∩ B^c", "tags": ["de-morgan"], "explanation": "De Morgan: ¬(a∨b) ⇔ ¬a∧¬b.", "sets": 2 },
+      { "type": "symbolic_simplify", "promptText": "Vereinfache: A ∖ B", "solutionExpr": "A ∩ B^c", "tags": ["difference"], "explanation": "x∈A∖B ⇔ x∈A ∧ ¬x∈B.", "sets": 2 },
+      { "type": "symbolic_simplify", "promptText": "Vereinfache: A Δ B", "solutionExpr": "(A ∖ B) ∪ (B ∖ A)", "tags": ["delta"], "explanation": "Symm. Diff = exklusives ODER.", "sets": 2 },
+      { "type": "symbolic_simplify", "promptText": "Vereinfache: (A ∪ B) ∩ A", "solutionExpr": "A", "tags": ["absorption"], "explanation": "Absorption: A ∪ (A ∩ B) = A.", "sets": 2 },
+      { "type": "symbolic_simplify", "promptText": "Vereinfache: (A ∩ B) ∪ (A ∩ B^c)", "solutionExpr": "A", "tags": ["partition"], "explanation": "B und B^c partitionieren Ω.", "sets": 2 },
+      { "type": "symbolic_simplify", "promptText": "Vereinfache: (A ∖ B) ∪ (A ∩ B)", "solutionExpr": "A", "tags": ["partition"], "explanation": "A teilt sich in A\\B und A∩B.", "sets": 2 },
+      { "type": "symbolic_simplify", "promptText": "Vereinfache: (A ∪ B) ∩ (A ∪ B^c)", "solutionExpr": "A", "tags": ["absorption"], "explanation": "A ist in beiden Vereinigungsklammern enthalten.", "sets": 2 },
+      { "type": "symbolic_simplify", "promptText": "Vereinfache: (A ∩ C) ∪ (A^c ∩ C)", "solutionExpr": "C", "tags": ["partition"], "explanation": "Partition nach A und A^c.", "sets": 3 },
+      { "type": "symbolic_simplify", "promptText": "Vereinfache: (A ∪ B) ∩ (B ∪ C)", "solutionExpr": "B ∪ (A ∩ C)", "tags": ["distributiv"], "explanation": "Distributivgesetz über B.", "sets": 3 },
+      { "type": "symbolic_simplify", "promptText": "Vereinfache: (A ∩ B) ∪ (B ∩ C) ∪ (A ∩ C)", "solutionExpr": "(A ∩ B) ∪ (B ∩ C) ∪ (A ∩ C)", "tags": ["triple"], "explanation": "Alle paarweisen Schnitte – keine weitere Vereinfachung.", "sets": 3 }
+    ],
+    "setRelation": [
+      { "type": "subset_check", "promptText": "Ist A ∩ B ⊆ A?", "leftExpr": "A ∩ B", "rightExpr": "A", "answer": "yes", "tags": ["subset"], "explanation": "x in A∩B impliziert x in A.", "sets": 2 },
+      { "type": "subset_check", "promptText": "Ist A ⊆ A ∪ B?", "leftExpr": "A", "rightExpr": "A ∪ B", "answer": "yes", "tags": ["subset"], "explanation": "Vereinigung erweitert A.", "sets": 2 },
+      { "type": "subset_check", "promptText": "Ist A ⊆ A ∩ B?", "leftExpr": "A", "rightExpr": "A ∩ B", "answer": "no", "tags": ["subset"], "explanation": "A∩B verlangt zusätzlich x∈B.", "sets": 2 },
+      { "type": "subset_check", "promptText": "Ist A ∖ B ⊆ A?", "leftExpr": "A ∖ B", "rightExpr": "A", "answer": "yes", "tags": ["subset", "difference"], "explanation": "A∖B enthält nur Elemente aus A.", "sets": 2 },
+      { "type": "disjoint_check", "promptText": "Sind A und A^c disjunkt?", "leftExpr": "A", "rightExpr": "A^c", "answer": "yes", "tags": ["disjoint"], "explanation": "A und sein Komplement schneiden sich nicht.", "sets": 2 },
+      { "type": "disjoint_check", "promptText": "Sind A und B disjunkt?", "leftExpr": "A", "rightExpr": "B", "answer": "no", "tags": ["disjoint"], "explanation": "Kann sich schneiden, keine Garantie.", "sets": 2 },
+      { "type": "disjoint_check", "promptText": "Sind A ∩ B und A ∩ B^c disjunkt?", "leftExpr": "A ∩ B", "rightExpr": "A ∩ B^c", "answer": "yes", "tags": ["disjoint", "partition"], "explanation": "B und B^c schließen sich aus.", "sets": 2 },
+      { "type": "subset_check", "promptText": "Ist (A ∩ C) ⊆ (A ∪ B)?", "leftExpr": "A ∩ C", "rightExpr": "A ∪ B", "answer": "yes", "tags": ["subset", "3set"], "explanation": "A∩C liegt in A, daher auch in A∪B.", "sets": 3 },
+      { "type": "disjoint_check", "promptText": "Sind A ∩ B^c und B ∩ C disjunkt?", "leftExpr": "A ∩ B^c", "rightExpr": "B ∩ C", "answer": "yes", "tags": ["disjoint", "3set"], "explanation": "B^c und B schließen sich aus.", "sets": 3 },
+      { "type": "subset_check", "promptText": "Ist (A ∩ B) ⊆ (A ∪ C)?", "leftExpr": "A ∩ B", "rightExpr": "A ∪ C", "answer": "yes", "tags": ["subset", "3set"], "explanation": "A∩B liegt in A.", "sets": 3 }
+    ],
+    "setVennTermToDiagram": [
+      { "type": "venn_shade", "promptText": "Schraffiere A", "term": "A", "tags": ["basic"], "sets": 2 },
+      { "type": "venn_shade", "promptText": "Schraffiere B", "term": "B", "tags": ["basic"], "sets": 2 },
+      { "type": "venn_shade", "promptText": "Schraffiere A ∩ B", "term": "A ∩ B", "tags": ["intersect"], "sets": 2 },
+      { "type": "venn_shade", "promptText": "Schraffiere A ∪ B", "term": "A ∪ B", "tags": ["union"], "sets": 2 },
+      { "type": "venn_shade", "promptText": "Schraffiere A Δ B", "term": "A Δ B", "tags": ["delta"], "sets": 2 },
+      { "type": "venn_shade", "promptText": "Schraffiere A ∖ B", "term": "A ∖ B", "tags": ["difference"], "sets": 2 },
+      { "type": "venn_shade", "promptText": "Schraffiere (A ∩ B)^c", "term": "(A ∩ B)^c", "tags": ["de-morgan"], "sets": 2 },
+      { "type": "venn_shade", "promptText": "Schraffiere (A ∪ B)^c", "term": "(A ∪ B)^c", "tags": ["de-morgan"], "sets": 2 },
+      { "type": "venn_shade", "promptText": "Schraffiere A ∩ C", "term": "A ∩ C", "tags": ["3set"], "sets": 3 },
+      { "type": "venn_shade", "promptText": "Schraffiere A ∩ B ∩ C", "term": "A ∩ B ∩ C", "tags": ["3set"], "sets": 3 },
+      { "type": "venn_shade", "promptText": "Schraffiere A ∪ (B ∩ C)", "term": "A ∪ (B ∩ C)", "tags": ["3set", "distributiv"], "sets": 3 },
+      { "type": "venn_shade", "promptText": "Schraffiere (A ∖ B) ∪ C", "term": "(A ∖ B) ∪ C", "tags": ["3set", "difference"], "sets": 3 }
+    ],
+    "setVennDiagramToTerm": [
+      { "type": "venn_expr", "promptText": "Finde einen Term für die markierten Bereiche", "maskExpr": "A ∩ B", "solutionExprs": ["A ∩ B"], "tags": ["intersect"], "sets": 2 },
+      { "type": "venn_expr", "promptText": "Nur A (ohne Schnitt) ist markiert", "maskExpr": "A ∖ B", "solutionExprs": ["A ∖ B", "A ∩ B^c"], "tags": ["difference"], "sets": 2 },
+      { "type": "venn_expr", "promptText": "Nur B (ohne Schnitt) ist markiert", "maskExpr": "B ∖ A", "solutionExprs": ["B ∖ A", "B ∩ A^c"], "tags": ["difference"], "sets": 2 },
+      { "type": "venn_expr", "promptText": "Alles außer dem Schnitt ist markiert", "maskExpr": "(A ∩ B)^c", "solutionExprs": ["(A ∩ B)^c", "A^c ∪ B^c"], "tags": ["de-morgan"], "sets": 2 },
+      { "type": "venn_expr", "promptText": "Nur außerhalb A∪B ist markiert", "maskExpr": "(A ∪ B)^c", "solutionExprs": ["(A ∪ B)^c", "A^c ∩ B^c"], "tags": ["de-morgan"], "sets": 2 },
+      { "type": "venn_expr", "promptText": "Nur A∩B∩C ist markiert", "maskExpr": "A ∩ B ∩ C", "solutionExprs": ["A ∩ B ∩ C"], "tags": ["3set"], "sets": 3 },
+      { "type": "venn_expr", "promptText": "Alle Bereiche von A außer Schnitt mit B", "maskExpr": "A ∖ B", "solutionExprs": ["A ∖ B", "A ∩ B^c"], "tags": ["difference", "3set"], "sets": 3 },
+      { "type": "venn_expr", "promptText": "Nur BC-Schnitt ist markiert", "maskExpr": "B ∩ C ∖ A", "solutionExprs": ["(B ∩ C) ∖ A", "B ∩ C ∩ A^c"], "tags": ["3set", "difference"], "sets": 3 },
+      { "type": "venn_expr", "promptText": "Markiert ist A Δ B (C ignorieren)", "maskExpr": "A Δ B", "solutionExprs": ["A Δ B"], "tags": ["delta", "3set"], "sets": 3 }
+    ],
+    "setConcrete": [
+      { "type": "finite_compute", "promptText": "A={1,2,3}, B={3,4}, A ∪ B = ?", "setA": [1, 2, 3], "setB": [3, 4], "op": "union", "answer": [1, 2, 3, 4], "tags": ["union"], "explanation": "Alle Elemente aus A oder B." },
+      { "type": "finite_compute", "promptText": "A={1,3,5}, B={3,5}, A ∖ B = ?", "setA": [1, 3, 5], "setB": [3, 5], "op": "diff", "answer": [1], "tags": ["difference"], "explanation": "Entferne 3 und 5 aus A." },
+      { "type": "finite_compute", "promptText": "A={1,2,3,4}, B={2,4}, A ∩ B = ?", "setA": [1, 2, 3, 4], "setB": [2, 4], "op": "inter", "answer": [2, 4], "tags": ["intersect"] },
+      { "type": "finite_compute", "promptText": "A={1,2,3}, B={3,4,5}, A Δ B = ?", "setA": [1, 2, 3], "setB": [3, 4, 5], "op": "sym", "answer": [1, 2, 4, 5], "tags": ["delta"] },
+      { "type": "finite_compute", "promptText": "A={a,b}, B={b,c}, A ∪ B = ?", "setA": ["a", "b"], "setB": ["b", "c"], "op": "union", "answer": ["a", "b", "c"], "tags": ["union"] },
+      { "type": "finite_compute", "promptText": "A={a,b,c}, B={a,c}, A ∩ B = ?", "setA": ["a", "b", "c"], "setB": ["a", "c"], "op": "inter", "answer": ["a", "c"], "tags": ["intersect"] },
+      { "type": "finite_compute", "promptText": "A={1,2,3,4}, B={1,3,5}, A ∖ B = ?", "setA": [1, 2, 3, 4], "setB": [1, 3, 5], "op": "diff", "answer": [2, 4], "tags": ["difference"] },
+      { "type": "finite_compute", "promptText": "A={x,y,z}, B={y,z}, A Δ B = ?", "setA": ["x", "y", "z"], "setB": ["y", "z"], "op": "sym", "answer": ["x"], "tags": ["delta"] }
+    ],
+    "setIntervals": [
+      { "type": "number_set_mc", "promptText": "Gehört 1/2 zu Q?", "answer": "yes", "explanation": "Bruch rational.", "tags": ["numberset"] },
+      { "type": "number_set_mc", "promptText": "Gehört √2 zu Q?", "answer": "no", "explanation": "√2 ist irrational.", "tags": ["numberset"] },
+      { "type": "number_set_mc", "promptText": "Gehört -3 zu Z?", "answer": "yes", "explanation": "Ganze Zahl.", "tags": ["numberset"] },
+      { "type": "number_set_mc", "promptText": "Gehört π zu N?", "answer": "no", "explanation": "π ist nicht natürlich.", "tags": ["numberset"] },
+      { "type": "interval_convert", "promptText": "Schreibe (−∞, 2] als Ungleichung", "answers": ["x<=2", "x ≤ 2"], "explanation": "Alles bis einschließlich 2.", "tags": ["interval"] },
+      { "type": "interval_convert", "promptText": "Schreibe x ≥ -1 als Intervall", "answers": ["[-1,∞)", "[-1, ∞)"], "explanation": "Ab -1 inklusive nach oben offen.", "tags": ["interval"] },
+      { "type": "interval_convert", "promptText": "Schreibe -2 < x < 3 als Intervall", "answers": ["(-2,3)", "(-2, 3)"], "explanation": "Offenes Intervall zwischen -2 und 3.", "tags": ["interval"] },
+      { "type": "interval_convert", "promptText": "Schreibe [0,4) als Doppelungleichung", "answers": ["0<=x<4", "0 ≤ x < 4"], "explanation": "0 inklusive, 4 exklusiv.", "tags": ["interval"] },
+      { "type": "interval_convert", "promptText": "Forme |x| ≤ 3 in eine Doppelungleichung", "answers": ["-3<=x<=3", "-3 ≤ x ≤ 3"], "explanation": "Betrag begrenzt zwischen -3 und 3.", "tags": ["abs"] },
+      { "type": "interval_convert", "promptText": "Forme |x| < 2 in Intervallschreibweise", "answers": ["(-2,2)", "(-2, 2)"], "explanation": "Zwischen -2 und 2 offen.", "tags": ["abs"] },
+      { "type": "interval_convert", "promptText": "Vereinigung: (-1,1) ∪ [1,3)", "answers": ["(-1,3)", "(-1, 3)"], "explanation": "Überschneidung an 1 macht 1 enthalten.", "tags": ["union"] },
+      { "type": "interval_convert", "promptText": "Schnitt: (-1,2] ∩ [0,3)", "answers": ["[0,2]", "[0, 2]"], "explanation": "Überlappung von 0 bis 2, inkl. 2.", "tags": ["intersect"] },
+      { "type": "interval_convert", "promptText": "Schnitt: (-∞,0) ∩ ( -2, ∞)", "answers": ["(-2,0)"], "explanation": "Zwischen -2 und 0.", "tags": ["intersect"] },
+      { "type": "interval_convert", "promptText": "Vereinigung: [0,1] ∪ [2,3]", "answers": ["[0,1]∪[2,3]", "[0,1] ∪ [2,3]"], "explanation": "Nicht verbunden, beide Abschnitte notieren.", "tags": ["union"] }
+    ]
+  }
+}

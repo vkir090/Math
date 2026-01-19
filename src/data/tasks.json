@@ -1,25 +1,67 @@
 {
   "variables": ["A", "B", "C"],
   "modes": {
-    "eliminate": [
+    "eliminateImp": [
       "(#1 ⇒ #2) ∨ #3",
       "#1 ⇒ (#2 ∨ #3)",
-      "(#1 ⇔ #2) ∧ (#2 ⇒ #3)",
       "(#1 ∧ #2) ⇒ (#2 ∨ #3)",
-      "(#1 ⇔ #2) ⇒ (#2 ⇔ #3)"
+      "(#1 ∨ #2) ⇒ (#2 ∧ #3)",
+      "(#1 ⇒ #2) ⇒ #3"
+    ],
+    "eliminateIff": [
+      "#1 ⇔ #2",
+      "(#1 ⇔ #2) ∧ #3",
+      "#1 ⇔ (#2 ∨ #3)",
+      "(#1 ∧ #2) ⇔ (#2 ∨ #3)",
+      "(#1 ⇒ #2) ⇔ (#2 ⇒ #3)"
     ],
     "negation": [
       "#1 ∧ (#2 ∨ #3)",
       "(#1 ∨ #2) ∧ #3",
       "(#1 ∧ #2) ∨ (#2 ∧ #3)",
-      "#1 ∨ (#2 ∧ #3)",
-      "(#1 ∨ #2) ∨ (#2 ∧ #3)"
+      "(#1 ∨ #2) ⇒ #3",
+      "(#1 ⇔ #2) ∧ #3"
     ],
     "equivalence": [
       { "base": "#1 ∧ (#2 ∨ #3)", "hint": "Distributivgesetz: verteile ∧ über ∨" },
       { "base": "¬(#1 ∧ #2)", "hint": "De Morgan anwenden" },
       { "base": "#1 ⇒ #2", "hint": "Ersetze ⇒ durch ¬ links oder rechts" },
       { "base": "(#1 ∨ #2) ⇒ #3", "hint": "Eliminiere ⇒ und vereinfache" }
+    ]
+  },
+  "predicateModes": {
+    "predNegation": [
+      { "base": "¬∀x P(x)", "answers": ["∃x ¬P(x)"], "hint": "Quantor negieren: ∀ ↔ ∃ und Formel negieren" },
+      { "base": "¬∃x Q(x)", "answers": ["∀x ¬Q(x)"], "hint": "Quantor negieren: ∃ wird ∀" },
+      { "base": "¬∀x (P(x) ⇒ Q(x))", "answers": ["∃x ¬(P(x) ⇒ Q(x))", "∃x (P(x) ∧ ¬Q(x))"] }
+    ],
+    "predRestricted": [
+      {
+        "base": "∀x∈M P(x)",
+        "answers": ["∀x (x∈M ⇒ P(x))", "∀x ((x∈M) ⇒ P(x))"],
+        "hint": "Eingeschränkte Allquantoren zu ⇒ umschreiben"
+      },
+      {
+        "base": "∃x∈M P(x)",
+        "answers": ["∃x (x∈M ∧ P(x))", "∃x ((x∈M) ∧ P(x))"],
+        "hint": "Eingeschränkte Existenzquantoren zu ∧ umschreiben"
+      }
+    ],
+    "predDistribution": [
+      {
+        "base": "Ist ∀x (P(x) ∨ Q(x)) äquivalent zu (∀x P(x)) ∨ (∀x Q(x))?",
+        "correctChoice": "falsch",
+        "hint": "∀ verteilt sich nicht über ∨"
+      },
+      {
+        "base": "Ist ∃x (P(x) ∧ Q(x)) äquivalent zu (∃x P(x)) ∧ (∃x Q(x))?",
+        "correctChoice": "falsch",
+        "hint": "∃ verteilt sich nicht über ∧"
+      },
+      {
+        "base": "Ist ∀x (P(x) ∧ Q(x)) äquivalent zu (∀x P(x)) ∧ (∀x Q(x))?",
+        "correctChoice": "korrekt"
+      }
     ]
   }
 }

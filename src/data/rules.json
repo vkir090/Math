@@ -1,0 +1,9 @@
+[
+  { "name": "Implikation entfernen", "from": "A ⇒ B", "to": "¬A ∨ B", "category": "imp", "note": "Ersetzt ⇒ durch ¬ links und ∨." },
+  { "name": "Äquivalenz zerlegen", "from": "A ⇔ B", "to": "(A ⇒ B) ∧ (B ⇒ A)", "category": "iff", "note": "⇔ als zwei Implikationen." },
+  { "name": "De Morgan (∨)", "from": "¬(A ∨ B)", "to": "¬A ∧ ¬B", "category": "negation", "note": "Negation verteilt über ∨." },
+  { "name": "De Morgan (∧)", "from": "¬(A ∧ B)", "to": "¬A ∨ ¬B", "category": "negation", "note": "Negation verteilt über ∧." },
+  { "name": "Doppelte Negation", "from": "¬¬A", "to": "A", "category": "negation", "note": "Zwei ¬ heben sich auf." },
+  { "name": "Imp in Disjunktion", "from": "¬A ∨ B", "to": "A ⇒ B", "category": "imp", "note": "Rückrichtung der Implikations-Regel." },
+  { "name": "Äquivalenz in Disjunktionen", "from": "A ⇔ B", "to": "(¬A ∨ B) ∧ (¬B ∨ A)", "category": "iff", "note": "⇔ direkt ohne ⇒ schreiben." }
+]

@@ -132,6 +132,13 @@ body {
   background: var(--card-secondary);
 }
 
+.card-sub {
+  border: 1px dashed var(--border);
+  border-radius: 12px;
+  padding: 0.75rem;
+  background: rgba(255, 255, 255, 0.02);
+}
+
 .tab-row {
   display: flex;
   gap: 0.5rem;
@@ -159,6 +166,7 @@ body {
   align-items: flex-start;
   justify-content: space-between;
   gap: 0.5rem;
+  flex-wrap: wrap;
 }
 
 .task-description {
@@ -200,6 +208,10 @@ body {
 .editor.disabled {
   opacity: 0.5;
   pointer-events: none;
+}
+
+.hidden {
+  display: none;
 }
 
 .editor__label {
@@ -295,10 +307,88 @@ button.primary {
   font-weight: 600;
 }
 
+.timer-box {
+  padding: 0.35rem 0.6rem;
+  border-radius: 10px;
+  border: 1px solid var(--border);
+  color: var(--muted);
+  font-weight: 600;
+  min-width: 140px;
+  text-align: right;
+}
+
+.timer-box .target {
+  color: var(--muted);
+  font-size: 0.85rem;
+}
+
+.timer-box.ok {
+  color: var(--success);
+  border-color: rgba(110, 231, 183, 0.4);
+}
+
 .progress-summary {
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
+}
+
+.hint-toggle {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-size: 0.9rem;
+  color: var(--muted);
+}
+
+.hint-toggle input {
+  transform: scale(1.1);
+}
+
+.unit-circle {
+  margin-top: 0.75rem;
+  border: 1px dashed var(--border);
+  border-radius: 12px;
+  padding: 0.5rem;
+  display: flex;
+  justify-content: center;
+}
+
+.unit-circle.hidden {
+  display: none;
+}
+
+.unit-circle-svg {
+  width: 180px;
+  height: 180px;
+}
+
+.mode-controls {
+  display: flex;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+  margin: 0.5rem 0 0.75rem;
+  align-items: flex-end;
+}
+
+.mode-controls.hidden {
+  display: none;
+}
+
+.mode-controls .control {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+
+.mode-controls select,
+.mode-controls input {
+  background: var(--card);
+  color: var(--text);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 0.5rem 0.75rem;
+  min-width: 140px;
 }
 
 .progress-item {
@@ -325,6 +415,12 @@ button.primary {
   background: rgba(255, 255, 255, 0.03);
 }
 
+.time-note {
+  margin-top: 0.25rem;
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
 .feedback.success {
   border-color: rgba(110, 231, 183, 0.4);
   color: var(--success);
@@ -333,6 +429,134 @@ button.primary {
 .feedback.error {
   border-color: rgba(255, 139, 139, 0.4);
   color: var(--error);
+}
+
+.mcq {
+  margin-top: 0.6rem;
+  border: 1px dashed var(--border);
+  border-radius: 12px;
+  padding: 0.75rem;
+  background: rgba(255, 255, 255, 0.02);
+}
+
+.mcq-options {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  margin-top: 0.3rem;
+}
+
+.mcq-options button {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--border);
+  color: var(--text);
+  border-radius: 10px;
+  padding: 0.55rem 0.9rem;
+  cursor: pointer;
+}
+
+.mcq-options button.active {
+  border-color: rgba(124, 246, 182, 0.5);
+  box-shadow: 0 8px 20px rgba(124, 246, 182, 0.2);
+}
+
+.venn {
+  margin-top: 0.75rem;
+}
+
+.venn-svg {
+  width: 100%;
+  max-width: 360px;
+  height: auto;
+  background: radial-gradient(120% 120% at 20% 10%, rgba(124, 246, 182, 0.06), transparent 60%),
+    radial-gradient(120% 120% at 80% 10%, rgba(139, 184, 255, 0.07), transparent 60%), transparent;
+  border-radius: 12px;
+  border: 1px solid var(--border);
+}
+
+.venn-outline {
+  pointer-events: none;
+}
+
+.venn-label {
+  fill: var(--muted);
+  font-size: 0.8rem;
+  pointer-events: none;
+}
+
+.region-fill {
+  fill: transparent;
+  opacity: 0.0;
+  transition: opacity 0.15s ease, fill 0.15s ease, stroke 0.15s ease;
+}
+
+.region-fill.active {
+  fill: rgba(124, 246, 182, 0.35);
+  opacity: 1;
+}
+
+.region-fill.extra {
+  fill: rgba(255, 139, 139, 0.35);
+  opacity: 1;
+}
+
+.region-fill.missing {
+  stroke: rgba(255, 139, 139, 0.7);
+  stroke-width: 2;
+  opacity: 1;
+}
+
+.venn-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(120px, 1fr));
+  gap: 0.5rem;
+  margin-top: 0.4rem;
+}
+
+.venn-region {
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 0.9rem;
+  background: rgba(255, 255, 255, 0.05);
+  color: var(--text);
+  cursor: pointer;
+  text-align: center;
+  opacity: 0.75;
+}
+
+.venn-region .label-small {
+  display: block;
+  color: var(--muted);
+  font-size: 0.85rem;
+}
+
+.venn-region.selected {
+  border-color: rgba(124, 246, 182, 0.85);
+  background: linear-gradient(120deg, rgba(124, 246, 182, 0.35), rgba(139, 184, 255, 0.3));
+  box-shadow: 0 10px 25px rgba(124, 246, 182, 0.18);
+  opacity: 1;
+}
+
+.venn-region.readonly {
+  cursor: default;
+}
+
+.venn-region.readonly:not(.selected) {
+  opacity: 0.35;
+}
+
+.solution {
+  margin-top: 0.4rem;
+  padding: 0.6rem 0.75rem;
+  border-radius: 10px;
+  border: 1px dashed var(--border);
+  color: var(--muted);
+  min-height: 1.2rem;
+}
+
+.solution.visible {
+  border-color: rgba(139, 184, 255, 0.45);
+  color: var(--text);
 }
 
 .truth-table {
